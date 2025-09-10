@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { UserIcon, BookOpenIcon, ChartBarIcon, CogIcon } from "lucide-react";
+import { User, BookOpen, BarChart3, Settings as SettingsIcon } from "lucide-react";
 
 interface TabProps {
   id: string;
@@ -13,22 +13,22 @@ const tabs: TabProps[] = [
   {
     id: "users",
     label: "Utilisateurs",
-    icon: <UserIcon className="w-5 h-5" />
+    icon: <User className="w-5 h-5" />
   },
   {
     id: "content",
     label: "Contenu",
-    icon: <BookOpenIcon className="w-5 h-5" />
+    icon: <BookOpen className="w-5 h-5" />
   },
   {
     id: "progress",
     label: "Progrès",
-    icon: <ChartBarIcon className="w-5 h-5" />
+    icon: <BarChart3 className="w-5 h-5" />
   },
   {
     id: "settings",
     label: "Paramètres",
-    icon: <CogIcon className="w-5 h-5" />
+    icon: <SettingsIcon className="w-5 h-5" />
   }
 ];
 
@@ -67,7 +67,7 @@ export default function AdminDashboard() {
         {activeTab === "users" && <UsersManagement />}
         {activeTab === "content" && <ContentManagement />}
         {activeTab === "progress" && <ProgressTracking />}
-        {activeTab === "settings" && <Settings />}
+        {activeTab === "settings" && <SettingsPanel />}
       </div>
     </div>
   );
@@ -208,7 +208,7 @@ function ProgressTracking() {
   );
 }
 
-function Settings() {
+function SettingsPanel() {
   return (
     <div>
       <h2 className="text-3xl font-bold text-gray-900 mb-6">Paramètres</h2>
