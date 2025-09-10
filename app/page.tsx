@@ -1,168 +1,124 @@
-import Card from "@/components/home/card";
-import { DEPLOY_URL } from "@/lib/constants";
-import { Github, Twitter } from "@/components/shared/icons";
-import WebVitals from "@/components/home/web-vitals";
-import ComponentGrid from "@/components/home/component-grid";
-import Image from "next/image";
-import { nFormatter } from "@/lib/utils";
+import Link from "next/link";
+import { BookOpen, Settings, Star, Heart } from "lucide-react";
 
-export default async function Home() {
-  const { stargazers_count: stars } = await fetch(
-    "https://api.github.com/repos/steven-tey/precedent",
-    {
-      ...(process.env.GITHUB_OAUTH_TOKEN && {
-        headers: {
-          Authorization: `Bearer ${process.env.GITHUB_OAUTH_TOKEN}`,
-          "Content-Type": "application/json",
-        },
-      }),
-      // data will revalidate every 24 hours
-      next: { revalidate: 86400 },
-    },
-  )
-    .then((res) => res.json())
-    .catch((e) => console.log(e));
-
+export default function Home() {
   return (
     <>
-      <div className="z-10 w-full max-w-xl px-5 xl:px-0">
-        <a
-          href="https://twitter.com/steventey/status/1613928948915920896"
-          target="_blank"
-          rel="noreferrer"
-          className="mx-auto mb-5 flex max-w-fit animate-fade-up items-center justify-center space-x-2 overflow-hidden rounded-full bg-blue-100 px-7 py-2 transition-colors hover:bg-blue-200"
-        >
-          <Twitter className="h-5 w-5 text-[#1d9bf0]" />
-          <p className="text-sm font-semibold text-[#1d9bf0]">
-            Introducing Precedent
+      <div className="z-10 w-full max-w-4xl px-5 xl:px-0">
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mb-6">
+            <span className="text-4xl">📚</span>
+          </div>
+          <h1
+            className="animate-fade-up bg-gradient-to-br from-blue-600 to-purple-600 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-7xl md:leading-[5rem]"
+            style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
+          >
+            Alphi
+          </h1>
+          <p
+            className="mt-6 animate-fade-up text-center text-gray-600 opacity-0 [text-wrap:balance] md:text-xl"
+            style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
+          >
+            Application éducative française pour les enfants du Québec
           </p>
-        </a>
-        <h1
-          className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent opacity-0 drop-shadow-sm [text-wrap:balance] md:text-7xl md:leading-[5rem]"
-          style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
-        >
-          Building blocks for your Next project
-        </h1>
-        <p
-          className="mt-6 animate-fade-up text-center text-gray-500 opacity-0 [text-wrap:balance] md:text-xl"
-          style={{ animationDelay: "0.25s", animationFillMode: "forwards" }}
-        >
-          An opinionated collection of components, hooks, and utilities for your
-          Next.js project.
-        </p>
+          <p
+            className="mt-3 animate-fade-up text-center text-gray-500 opacity-0 [text-wrap:balance]"
+            style={{ animationDelay: "0.35s", animationFillMode: "forwards" }}
+          >
+            Apprenez la classification des mots à travers la poésie
+          </p>
+        </div>
+        
         <div
-          className="mx-auto mt-6 flex animate-fade-up items-center justify-center space-x-5 opacity-0"
-          style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 animate-fade-up opacity-0"
+          style={{ animationDelay: "0.4s", animationFillMode: "forwards" }}
         >
-          <a
-            className="group flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
-            href={DEPLOY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link 
+            href="/jeu"
+            className="group bg-gradient-to-br from-blue-500 to-purple-600 p-8 rounded-2xl text-white transition-transform hover:scale-105 shadow-lg"
           >
-            <svg
-              className="h-4 w-4 group-hover:text-black"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 4L20 20H4L12 4Z"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <p>Deploy to Vercel</p>
-          </a>
-          <a
-            className="flex max-w-fit items-center justify-center space-x-2 rounded-full border border-gray-300 bg-white px-5 py-2 text-sm text-gray-600 shadow-md transition-colors hover:border-gray-800"
-            href="https://github.com/steven-tey/precedent"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Github />
-            <p>
-              <span className="hidden sm:inline-block">Star on</span> GitHub{" "}
-              <span className="font-semibold">{nFormatter(stars)}</span>
+            <div className="flex items-center mb-4">
+              <div className="bg-white/20 p-3 rounded-full mr-4">
+                <Star className="w-8 h-8" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold">Jouer</h2>
+                <p className="text-blue-100">Interface enfant</p>
+              </div>
+            </div>
+            <p className="text-blue-100 mb-4">
+              Commence ton aventure avec les mots ! Explore la poésie et apprends 
+              la grammaire de façon amusante.
             </p>
-          </a>
+            <div className="flex items-center text-sm text-blue-100">
+              <Heart className="w-4 h-4 mr-2" />
+              4 étapes éducatives
+            </div>
+          </Link>
+
+          <Link 
+            href="/admin"
+            className="group bg-gradient-to-br from-gray-700 to-gray-900 p-8 rounded-2xl text-white transition-transform hover:scale-105 shadow-lg"
+          >
+            <div className="flex items-center mb-4">
+              <div className="bg-white/20 p-3 rounded-full mr-4">
+                <Settings className="w-8 h-8" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold">Administration</h2>
+                <p className="text-gray-300">Interface éducateur</p>
+              </div>
+            </div>
+            <p className="text-gray-300 mb-4">
+              Gérez les utilisateurs, le contenu éducatif et suivez les progrès 
+              des élèves dans leur apprentissage.
+            </p>
+            <div className="flex items-center text-sm text-gray-300">
+              <BookOpen className="w-4 h-4 mr-2" />
+              Tableau de bord complet
+            </div>
+          </Link>
         </div>
       </div>
-      <div className="my-10 grid w-full max-w-screen-xl animate-fade-up grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0">
-        {features.map(({ title, description, demo, large }) => (
-          <Card
-            key={title}
-            title={title}
-            description={description}
-            demo={
-              title === "Beautiful, reusable components" ? (
-                <ComponentGrid />
-              ) : (
-                demo
-              )
-            }
-            large={large}
-          />
-        ))}
+
+      <div 
+        className="my-16 w-full max-w-4xl animate-fade-up opacity-0"
+        style={{ animationDelay: "0.5s", animationFillMode: "forwards" }}
+      >
+        <h3 className="text-2xl font-bold text-center text-gray-800 mb-8">
+          Comment ça marche ?
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          {steps.map((step, index) => (
+            <div key={index} className="text-center bg-white rounded-xl p-6 shadow-sm">
+              <div className="bg-gradient-to-br from-blue-500 to-purple-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-lg">
+                {index + 1}
+              </div>
+              <h4 className="font-semibold text-gray-800 mb-2">{step.title}</h4>
+              <p className="text-sm text-gray-600">{step.description}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
 }
 
-const features = [
+const steps = [
   {
-    title: "Beautiful, reusable components",
-    description:
-      "Pre-built beautiful, a11y-first components, powered by [Tailwind CSS](https://tailwindcss.com), [Radix UI](https://www.radix-ui.com), and [Framer Motion](https://framer.com/motion). Used in production on [Dub.co](https://dub.co).",
-    large: true,
+    title: "Choisis une image",
+    description: "Sélectionne une image qui représente un vers de poème"
   },
   {
-    title: "Performance first",
-    description:
-      "Built on [Next.js](https://nextjs.org/) primitives like `@next/font` and `next/image` for stellar performance.",
-    demo: <WebVitals />,
+    title: "Classe les mots",
+    description: "Attribue la bonne classe grammaticale à chaque mot en gras"
   },
   {
-    title: "One-click Deploy",
-    description:
-      "Jumpstart your next project by deploying Precedent to [Vercel](https://vercel.com/) in one click.",
-    demo: (
-      <a href={DEPLOY_URL}>
-        <Image
-          src="https://vercel.com/button"
-          alt="Deploy with Vercel"
-          width={120}
-          height={30}
-          unoptimized
-        />
-      </a>
-    ),
+    title: "Trouve les lettres",
+    description: "Découvre les lettres associées aux couleurs des classes"
   },
   {
-    title: "Built-in Auth",
-    description:
-      "Precedent comes with authentication via [Clerk](https://clerk.com/)",
-    demo: (
-      <div className="flex items-center justify-center space-x-20">
-        <Image alt="Clerk logo" src="/clerk.svg" width={50} height={50} />
-      </div>
-    ),
-  },
-  {
-    title: "Hooks, utilities, and more",
-    description:
-      "Precedent offers a collection of hooks, utilities, and `@vercel/og`",
-    demo: (
-      <div className="grid grid-flow-col grid-rows-3 gap-10 p-10">
-        <span className="font-mono font-semibold">useIntersectionObserver</span>
-        <span className="font-mono font-semibold">useLocalStorage</span>
-        <span className="font-mono font-semibold">useScroll</span>
-        <span className="font-mono font-semibold">nFormatter</span>
-        <span className="font-mono font-semibold">capitalize</span>
-        <span className="font-mono font-semibold">truncate</span>
-      </div>
-    ),
-  },
+    title: "Détermine le genre",
+    description: "Trouve si le mot découvert est masculin ou féminin"
+  }
 ];

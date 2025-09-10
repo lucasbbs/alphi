@@ -8,10 +8,10 @@ import Navbar from "@/components/layout/navbar";
 import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata = {
-  title: "Precedent - Building blocks for your Next.js project",
+  title: "Alphi - Application Éducative Française",
   description:
-    "Precedent is the all-in-one solution for your Next.js project. It includes a design system, authentication, analytics, and more.",
-  metadataBase: new URL("https://precedent.dev"),
+    "Application éducative française pour les enfants du Québec. Apprenez la classification des mots à travers la poésie de manière ludique et interactive.",
+  metadataBase: new URL("https://alphi-education.replit.dev"),
 };
 
 export default async function RootLayout({
