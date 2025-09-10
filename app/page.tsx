@@ -4,6 +4,8 @@ import { BookOpen, Settings, Star, Heart } from "lucide-react";
 export default function Home() {
   return (
     <>
+      <div className="fixed h-screen w-full bg-gradient-to-br from-indigo-50 via-white to-cyan-100" />
+      <main className="flex min-h-screen w-full flex-col items-center justify-center py-32 relative z-10">
       <div className="z-10 w-full max-w-4xl px-5 xl:px-0">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mb-6">
@@ -100,6 +102,7 @@ export default function Home() {
           ))}
         </div>
       </div>
+      </main>
     </>
   );
 }

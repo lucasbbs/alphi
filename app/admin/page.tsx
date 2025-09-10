@@ -9,7 +9,7 @@ export const metadata = {
 export default function AdminPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <Suspense fallback={<div className="flex items-center justify-center h-screen">Chargement...</div>}>
+      <Suspense fallback={<div className="flex items-center justify-center h-screen text-gray-800">Chargement...</div>}>
         <AdminDashboard />
       </Suspense>
     </div>
